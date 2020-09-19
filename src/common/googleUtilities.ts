@@ -48,9 +48,8 @@ export function fetchGoogleRoutes(fetchParameters: FetchGoogleRoutesRequest) {
       console.log('Service: ', service);
       console.log('Parameters: ', parameters);
       const googleDirectionsRequest = createGoogleDirectionsRequest(parameters);
-      console.log(googleDirectionsRequest);
       if (service !== undefined) {
-        console.log('Inside service check', service);
+        console.log('Inside service check', service.route, googleDirectionsRequest);
         service.route(googleDirectionsRequest, (response: google.maps.DirectionsResult, status: google.maps.DirectionsStatus) => {
           console.log(response, status);
           if (status === 'OK') {

@@ -10,14 +10,7 @@ import directionsResponseFixture from './demoGoogleDirectionsResponse.fixture';
 window.google = {
   maps: {
     DirectionsService: class {
-      route() {
-        return { 
-          response: directionsResponseFixture,
-          status: 'OK',
-        }
-      }
-      // =>
-      //   jest.fn().mockImplementation((_request, callback) => callback());
+      route() { jest.fn().mockImplementation((_request, callback) => callback()); }
     },
     DirectionsStatus: {
       INVALID_REQUEST: 'INVALID_REQUEST' as google.maps.DirectionsStatus.INVALID_REQUEST,
@@ -58,11 +51,11 @@ describe('Google Utilities', () => {
             orderedStops: defaultTrip.orderedStops,
           },
         });
-        // console.log(result);
+        console.log(result);
         // expect(result.geocoded_waypoints.length).toEqual(
         //   defaultTrip.orderedStops.length
         // );
-        expect(result.status).toEqual('OK');
+        expect(result.status).toEqual('Hello');
       } catch (err) {
         console.log('Test Error: ', err);
       }
